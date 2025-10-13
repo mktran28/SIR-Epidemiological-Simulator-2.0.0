@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Simulation Results</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        input.form-control {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+
+    <h1 class="mb-4 text-center">Simulation Results</h1>
+
+    <div class="mb-4 text-center">
+        <img src="{% static img_path %}" alt="Simulation Graph" class="img-fluid rounded shadow" />
+    </div>
+
+    {% if error %}
+    <div class="alert alert-danger text-center">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    {% if show_strategy_options %}
+    <form method="POST" class="card p-4 shadow-sm text-center mx-auto w-100" style="max-width: none;">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="strategy" class="form-label d-block">Select Strategy:</label>
+            <select name="strategy" id="strategy" class="form-select w-100" onchange="this.form.submit()">
+                <option value="" class="text-center">-- Select --</option>
+                <option value="strategy1" {% if selected_strategy == 'strategy1' %}selected{% endif %} class = "text-center">Reduce Contact Rate</option>
+                <option value="strategy2" {% if selected_strategy == 'strategy2' %}selected{% endif %} class = "text-center">Increase Recovery Probability</option>
+                <option value="strategy3" {% if selected_strategy == 'strategy3' %}selected{% endif %} class = "text-center">Reduce Population Size</option>
+            </select>
+        </div>
+
+        {% if selected_strategy == "strategy1" %}
+        <div class="mb-3 mx-auto" style="max-width: 250px;">
+            <label for="new_contactRate" class="form-label d-block">New Contact Rate:</label>
+            <input type="number" step="0.01" name="new_contactRate" id="new_contactRate" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Run Strategy 1</button>
+
+        {% elif selected_strategy == "strategy2" %}
+        <div class="mb-3 mx-auto" style="max-width: 250px;">
+            <label for="new_recoverProb" class="form-label d-block">New Recovery Probability:</label>
+            <input type="number" step="0.01" name="new_recoverProb" id="new_recoverProb" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Run Strategy 2</button>
+
+        {% elif selected_strategy == "strategy3" %}
+        <div class="mb-3 mx-auto" style="max-width: 250px;">
+            <label for="new_numPeople" class="form-label d-block">New Population Size:</label>
+            <input type="number" name="new_numPeople" id="new_numPeople" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Run Strategy 3</button>
+        {% endif %}
+    </form>
+    {% endif %}
+
+    {% if try_another_strategy %}
+    <div class="mt-4 text-center">
+        <form action="{% url 'result' %}" method="GET" class="d-inline">
+            <button class="btn btn-outline-secondary">Try another strategy</button>
+        </form>
+
+        <form action="{% url 'index' %}" method="GET" class="d-inline ms-2">
+            <button class="btn btn-outline-primary">Back to Baseline</button>
+        </form>
+    </div>
+    {% endif %}
+
+</div>
+</body>
+</html>
