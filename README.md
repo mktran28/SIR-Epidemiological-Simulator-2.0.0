@@ -30,6 +30,54 @@ In the walkthrough, the user tests a population of 100,000 people with a contact
 
 The walkthrough illustrates how these strategies affect the spread of the disease and provides insights into which interventions may be most effective.
 
+## Getting Started
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/mktran28/SIR-Epidemiological-Simulator-2.0.0.git
+   cd SIR-Epidemiological-Simulator-2.0.0
+   ```
+
+2. **Create and activate a virtual environment**
+
+   ```bash
+   python -m venv venv
+   # Activate it:
+   # On macOS/Linux:
+   source venv/bin/activate
+   # On Windows:
+   venv\Scripts\activate
+   ```
+
+3. **Install dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Apply database migrations**
+
+   ```bash
+   python manage.py migrate
+   ```
+
+5. **Run the development server**
+
+   ```bash
+   python manage.py runserver
+   ```
+
+6. **Access the web app**
+
+   Open your browser and go to:
+
+   ```
+   http://127.0.0.1:8000/
+   ```
+
+   Use the form to input simulation parameters and explore the model.
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
