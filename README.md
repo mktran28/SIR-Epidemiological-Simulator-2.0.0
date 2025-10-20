@@ -32,14 +32,14 @@ The walkthrough illustrates how these strategies affect the spread of the diseas
 
 ## Getting Started
 
-1. **Clone the repository**
+1. Clone the repository
 
    ```bash
    git clone https://github.com/mktran28/SIR-Epidemiological-Simulator-2.0.0.git
    cd SIR-Epidemiological-Simulator-2.0.0
    ```
 
-2. **Create and activate a virtual environment**
+2. Create and activate a virtual environment
 
    ```bash
    python -m venv venv
@@ -50,25 +50,25 @@ The walkthrough illustrates how these strategies affect the spread of the diseas
    venv\Scripts\activate
    ```
 
-3. **Install dependencies**
+3. Install dependencies
 
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Apply database migrations**
+4. Apply database migrations
 
    ```bash
    python manage.py migrate
    ```
 
-5. **Run the development server**
+5. Run the development server
 
    ```bash
    python manage.py runserver
    ```
 
-6. **Access the web app**
+6. Access the web app
 
    Open your browser and go to:
 
